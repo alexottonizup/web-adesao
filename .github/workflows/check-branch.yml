@@ -1,0 +1,12 @@
+name: Check Branch Rules
+
+on:
+  workflow_dispatch: # Permite rodar manualmente
+  push:              # Ou rode em push, se preferir
+
+jobs:
+  call_ecr_docker_build:
+    uses: zup-unit/vivo-easy-ecr-build/.github/workflows/ecr-build.yml@master
+    with:
+      base_ref_external: ${{ github.base_ref }}
+      head_ref_external: ${{ github.head_ref }}
