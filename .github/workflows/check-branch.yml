@@ -6,7 +6,7 @@ on:
 
 jobs:
   call_ecr_docker_build:
-    uses: alexottonizup/web-adesao/.github/workflows/ecr-build.yml@main
+    uses: alexottonizup/web-adesao/.github/workflows/validate-branch.yml@main
     with:
       base_ref_external: ${{ github.base_ref }}
       head_ref_external: ${{ github.head_ref }}
