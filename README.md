@@ -1,3 +1,3 @@
 # web-adesao
 POC Git Flow
-1.0
+1.1
