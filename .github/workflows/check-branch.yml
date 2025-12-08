@@ -1,12 +1,28 @@
 name: Check Branch Rules
 
 on:
-  workflow_dispatch: # Permite rodar manualmente
-  push:              # Ou rode em push, se preferir
+  #workflow_dispatch: # Permite rodar manualmente
+  #push:              # Ou rode em push, se preferir
+  pull_request:
 
 jobs:
-  call_ecr_docker_build:
-    uses: zup-unit/vivo-easy-ecr-build/.github/workflows/ecr-build.yml@master
+  call_branch_rules:
+    uses: alexottonizup/web-alta/.github/workflows/check-branch.yml@main
     with:
       base_ref_external: ${{ github.base_ref }}
       head_ref_external: ${{ github.head_ref }}
+
+  show-branch:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+      
+      - name: Validate source branch
+        run: |
+          TARGET_BRANCH="${{ inputs.base_ref_external }}"
+          SOURCE_BRANCH="${{ inputs.head_ref_external }}"
+
+          echo "Target branch: $TARGET_BRANCH"
+          echo "Source branch: $SOURCE_BRANCH"
