@@ -1,8 +1,9 @@
 name: Check Branch Rules
 
 on:
-  workflow_dispatch: # Permite rodar manualmente
-  push:              # Ou rode em push, se preferir
+  #workflow_dispatch: # Permite rodar manualmente
+  #push:              # Ou rode em push, se preferir
+  pull_request:
 
 jobs:
   call_branch_rules:
