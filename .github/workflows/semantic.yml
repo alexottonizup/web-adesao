@@ -20,4 +20,4 @@ jobs:
         if: steps.semantic.outputs.version != ''
         run: |
           VERSION=${{ steps.semantic.outputs.version }}
-          echo ${VERSION}
+          echo "Target branch: $VERSION"
