@@ -1,0 +1,23 @@
+name: Release Docker Image
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install semantic-release and plugins
+        run: npm install --save-dev semantic-release @semantic-release/exec
+
+      - name: Build and push Docker image
+        if: steps.semantic.outputs.version != ''
+        run: |
+          VERSION=${{ steps.semantic.outputs.version }}
+          echo ${VERSION}
