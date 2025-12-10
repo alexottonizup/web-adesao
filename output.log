@@ -1,0 +1,9 @@
+[12:13:49 PM] [semantic-release] › ℹ  Running semantic-release version 22.0.12
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "verifyConditions" from "@semantic-release/github"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "analyzeCommits" from "@semantic-release/commit-analyzer"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "generateNotes" from "@semantic-release/release-notes-generator"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "publish" from "@semantic-release/github"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "addChannel" from "@semantic-release/github"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "success" from "@semantic-release/github"
+[12:13:49 PM] [semantic-release] › ✔  Loaded plugin "fail" from "@semantic-release/github"
+[12:13:51 PM] [semantic-release] › ℹ  This test run was triggered on the branch develop, while semantic-release is configured to only publish from main, therefore a new version won’t be published.
