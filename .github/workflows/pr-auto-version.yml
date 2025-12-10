@@ -1,0 +1,40 @@
+name: Auto Version & PR
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  version-and-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install --save-dev semantic-release @semantic-release/exec
+
+      - name: Get next version with semantic-release
+        id: semantic
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          npx semantic-release --dry-run > output.log
+          VERSION=$(grep -oP 'Published release \K[0-9]+\.[0-9]+\.[0-9]+' output.log | tail -1)
+          echo "version=$VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create Pull Request to main
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          commit-message: "chore(release): prepare v${{ steps.semantic.outputs.version }}"
+          title: "Release v${{ steps.semantic.outputs.version }}"
+          body: "Automated PR to release version ${{ steps.semantic.outputs.version }} to main"
+          base: main
+          branch: develop
